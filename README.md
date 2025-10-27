@@ -1,4 +1,4 @@
-# Contorno de Costa Rica (basado en la capa de áreas de conservación)
+## Áreas de conservación
 
 ```bash
 # Lista de capas en servicio WFS del Sinac
@@ -7,7 +7,24 @@ ogrinfo WFS:"http://geos1pne.sirefor.go.cr/wfs"
 # Información sobre la capa de áreas de conservación
 ogrinfo -al -so WFS:"http://geos1pne.sirefor.go.cr/wfs" "PNE:areas_conservacion"
 
-# Descarga a GPKG de la capa WFS de áreas de conservación
+# Descarga en formato GPKG
+ogr2ogr areas-conservacion.gpkg \
+  WFS:"http://geos1pne.sirefor.go.cr/wfs" "PNE:areas_conservacion" \
+  -nln areas-conservacion \
+  -t_srs EPSG:4326 \
+  -makevalid
+```
+
+## Contorno de Costa Rica (basado en la capa de áreas de conservación)
+
+```bash
+# Lista de capas en servicio WFS del Sinac
+ogrinfo WFS:"http://geos1pne.sirefor.go.cr/wfs"
+
+# Información sobre la capa de áreas de conservación
+ogrinfo -al -so WFS:"http://geos1pne.sirefor.go.cr/wfs" "PNE:areas_conservacion"
+
+# Descarga en formato GPKG
 ogr2ogr costarica.gpkg \
   WFS:"http://geos1pne.sirefor.go.cr/wfs" \
   -t_srs EPSG:4326 \
